@@ -10,13 +10,7 @@ public class Persona {
     private String sexo;
     private String [] sexOptions = new String []{"masculino","femenino"};;
 
-    public Persona (String nombre, String apellido1, String apellido2, String sexo, String curp){
-        this.nombre =  nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
-        this.curp = curp;
-        this.sexo = sexo;
-    }
+    
     public void setName(String nombre) throws Error {
         if(!nombre.equals("")) this.nombre = nombre;
         else throw new Error("El nombre no puede estar vacío.");
@@ -39,7 +33,6 @@ public class Persona {
 
     public void setSexo(String category) throws Error {
 		boolean valid = false;
-
 		if(!sexo.equals("")) {
 			for(byte i=0; i<sexOptions.length; i++) {
 				if(sexOptions[i].equals(sexo.toLowerCase())) {
@@ -81,9 +74,6 @@ public class Persona {
         return curp;
     }
 
-    public String toString (){
-        return "\nNombre: " + nombre + " " + apellido1 + "" + apellido2 + "\nEdad: " + edad + "\nCurp: " + curp;
-    }
 
     public String getIne() {
         return null;

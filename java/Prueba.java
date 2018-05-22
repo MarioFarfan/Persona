@@ -3,42 +3,39 @@ import java.util.Scanner;
 public class Prueba {
     public static void main (String [] args){
         Scanner read = new Scanner(System.in);
-        Persona persona;
+        Persona persona = new Persona();
+        Ciudadano ciudadano = new Ciudadano();
 
         while (true){
 
             
                 System.out.println("Ingrese el nombre: ");
-                String nombre = read.next();
+                persona.setName(read.nextLine());
                 System.out.println("Ingrese el primer apellido: ");
-                String apellido1 = read.next();
+                persona.setApellido1(read.next());
                 System.out.println("Ingrese el segundo apellido: ");
-                String apellido2 = read.next();
+                persona.setApellido2(read.next());
                 System.out.println("Ingrese la curp: ");
-                String curp = read.next();
+                persona.setCurp(read.next());
                 System.out.println("Ingrese la edad: ");
-                int edad = read.nextInt();
+                persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
-                String sexo = read.next();
-                //persona = new Persona(nombre,apellido1,apellido2,curp,edad,sxo);
+                persona.setSexo(read.next());
 
-                if (edad >= 18 && sexo.equals("masculino")){
+                if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
-                    String ine = read.next();
-                    System.out.println("Ingrese su Csrtilla: ");
-                    String cartilla = read.next();
-                    persona = new Ciudadano (nombre, apellido1, apellido2, sexo, curp, ine, cartilla);
-                } else if (edad >= 18 && sexo.equals("femenino")){
-                    System.out.println("Ingrese su INE: ");
-                    String ine = read.next();
-                     persona = new Ciudadano (nombre, apellido1, apellido2, sexo, curp, ine);
-                } else {
-                    persona = new Persona (nombre, apellido1, apellido2, sexo, curp);
-                }                             
-            
+                    ciudadano.setIne(read.next());
+                    if (persona.getSexo().equals("masculino")){
+                        System.out.println("Ingrese su Cartilla: ");
+                        ciudadano.setCartilla(read.next());
+                    }
+                }
             break;
         }
             
+        
+        System.out.println("_____________________________________");
+        System.out.println("_____________________________________");
         System.out.println(persona.getName() + " "+persona.getApellido1() + " "+persona.getApellido2());
         System.out.println("Edad: " + persona.getEdad());
         System.out.println("Sexo -.- " +  persona.getSexo());
@@ -50,6 +47,8 @@ public class Prueba {
                 System.out.println("Cartilla: " + persona.getCartilla());
             }
         }
+        System.out.println("_____________________________________");
+        System.out.println("_____________________________________");
 
         
     }

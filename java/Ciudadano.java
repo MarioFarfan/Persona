@@ -5,25 +5,25 @@ public class Ciudadano extends Persona {
     private String cartilla;
 
     
-    public Ciudadano (String nombre, String apellido1, String apellido2, String sexo, String curp,  String ine){
-        super(nombre, apellido1, apellido2, sexo, curp);
-        /*super.setApellido1(apellido1);
-        super.setApellido2(apellido2);
-        super.setSexo(sexo);
-        super.setCurp(curp);*/
-        this.ine = ine;
-    }
-
-    public Ciudadano (String nombre, String apellido1, String apellido2, String sexo, String curp,  String ine, String cartilla){
-        super(nombre, apellido1, apellido2, sexo, curp);
-        /*super.setName(nombre);
+    /*public Ciudadano (String nombre, String apellido1, String apellido2, int edad, String sexo, String curp,  String ine){
+        super(nombre, apellido1, apellido2, edad, sexo, curp);
         super.setApellido1(apellido1);
         super.setApellido2(apellido2);
         super.setSexo(sexo);
-        super.setCurp(curp);*/
+        super.setCurp(curp);
+        this.ine = ine;
+    }
+
+    public Ciudadano (String nombre, String apellido1, String apellido2,int edad,  String sexo, String curp,  String ine, String cartilla){
+        super(nombre, apellido1, apellido2, edad, sexo, curp);
+        super.setName(nombre);
+        super.setApellido1(apellido1);
+        super.setApellido2(apellido2);
+        super.setSexo(sexo);
+        super.setCurp(curp);
         this.ine = ine;
         this.cartilla = cartilla;
-    }
+    }*/
 
     public void setIne(String ine) throws Error {
         if(!ine.equals("")) this.ine = ine;
