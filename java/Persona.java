@@ -31,7 +31,7 @@ public class Persona {
         else throw new Error("La curp no puede estar vacía.");
     }
 
-    public void setSexo(String category) throws Error {
+    public void setSexo(String sexo) throws Error {
 		boolean valid = false;
 		if(!sexo.equals("")) {
 			for(byte i=0; i<sexOptions.length; i++) {
@@ -46,7 +46,7 @@ public class Persona {
 	}
 
     public void setEdad(int edad) throws Error {
-        if(edad < 0) this.edad = edad;
+        if(edad >= 0) this.edad = edad;
         else throw new Error("La edad no puede ser negativa.");
     }
 
