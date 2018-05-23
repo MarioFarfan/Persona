@@ -45,8 +45,8 @@ public class Persona {
 		if(!valid) throw new Error("El sexo solo puede ser masculino o femenino.");
 	}
 
-    public void setEdad(int edad) throws Error {
-        if(edad >= 0) this.edad = edad;
+    public void setEdad(int age) throws Error {
+        if(age >= 0) this.edad = age;
         else throw new Error("La edad no puede ser negativa.");
     }
 
@@ -73,7 +73,6 @@ public class Persona {
     public String getCurp (){
         return curp;
     }
-
 
     public String getIne() {
         return null;

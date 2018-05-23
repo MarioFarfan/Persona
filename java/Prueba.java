@@ -9,7 +9,7 @@ public class Prueba {
         while (true){
             try {
                 System.out.println("Ingrese el nombre: ");
-                persona.setName(read.next());
+                persona.setName(read.nextLine());
                 System.out.println("Ingrese el primer apellido: ");
                 persona.setApellido1(read.next());
                 System.out.println("Ingrese el segundo apellido: ");
@@ -20,6 +20,7 @@ public class Prueba {
                 persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
                 persona.setSexo(read.next());
+
                 if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
                     ciudadano.setIne(read.next());
@@ -28,6 +29,7 @@ public class Prueba {
                         ciudadano.setCartilla(read.next());
                     }
                 }
+                
             }
             catch(NullPointerException npe){
                 System.out.println(npe);
@@ -38,7 +40,7 @@ public class Prueba {
             catch(Error e){
                 System.out.println(e);
                 System.out.println("Ingrese el nombre: ");
-                persona.setName(read.nextLine());
+                persona.setName(read.next());
                 System.out.println("Ingrese el primer apellido: ");
                 persona.setApellido1(read.next());
                 System.out.println("Ingrese el segundo apellido: ");
@@ -62,22 +64,22 @@ public class Prueba {
         }
         
         System.out.println("_____________________________________");
+        System.put.printlm(" FELICIDADES, ERES CIUDADANO");
         System.out.println("_____________________________________");
         System.out.println(persona.getName() + " "+persona.getApellido1() + " "+persona.getApellido2());
         System.out.println("Edad: " + persona.getEdad());
-        System.out.println("Sexo -.- " +  persona.getSexo());
+        System.out.println("Sexo: " +  persona.getSexo());
         System.out.println("Curp: " + persona.getCurp());
         
         if(persona.getEdad() >= 18) {
-            System.out.println("INE: " + persona.getIne());
+            System.out.println("INE: " + ciudadano.getIne());
             if(persona.getSexo().equals("masculino")){
-                System.out.println("Cartilla: " + persona.getCartilla());
+                System.out.println("Cartilla: " + ciudadano.getCartilla());
             }
         }
         System.out.println("_____________________________________");
         System.out.println("_____________________________________");
 
-        
     }
 }
 
