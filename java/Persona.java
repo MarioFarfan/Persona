@@ -12,28 +12,28 @@ public class Persona {
 
     
     public void setName(String nombre) throws Error {
-        if(!nombre.equals("")) this.nombre = nombre;
+        if(!nombre.equals(" ")) this.nombre = nombre;
         else throw new Error("El nombre no puede estar vacío.");
     }
 
     public void setApellido1(String apellido1) throws Error {
-        if(!apellido1.equals("")) this.apellido1 = apellido1;
+        if(!apellido1.equals(" ")) this.apellido1 = apellido1;
         else throw new Error("El apellido no puede estar vacío.");
     }
 
     public void setApellido2(String apellido2) throws Error {
-        if(!apellido2.equals("")) this.apellido2 = apellido2;
+        if(!apellido2.equals(" ")) this.apellido2 = apellido2;
         else throw new Error("El apellido no puede estar vacío.");
     }
 
     public void setCurp(String curp) throws Error {
-        if(!curp.equals("")) this.curp = curp;
+        if(!curp.equals(" ")) this.curp = curp;
         else throw new Error("La curp no puede estar vacía.");
     }
 
     public void setSexo(String sexo) throws Error {
 		boolean valid = false;
-		if(!sexo.equals("")) {
+		if(!sexo.equals(" ")) {
 			for(byte i=0; i<sexOptions.length; i++) {
 				if(sexOptions[i].equals(sexo.toLowerCase())) {
 					this.sexo = sexo;

@@ -26,7 +26,7 @@ public class Ciudadano extends Persona {
     }*/
 
     public void setIne(String ine) throws Error {
-        if(!ine.equals("")) this.ine = ine;
+        if(!ine.equals(" ")) this.ine = ine;
         else throw new Error("La INE no puede estar vacía.");
     }
     
@@ -35,7 +35,7 @@ public class Ciudadano extends Persona {
     }
 
     public void setCartilla(String cartilla) throws Error {
-        if(!cartilla.equals("")) this.cartilla = cartilla;
+        if(!cartilla.equals(" ")) this.cartilla = cartilla;
         else throw new Error("La Cartilla no puede estar vacía.");
     }
 
