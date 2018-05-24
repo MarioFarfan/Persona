@@ -46,17 +46,17 @@ public class Prueba {
                 System.out.println("Ingrese el segundo apellido: ");
                 persona.setApellido2(read.next());
                 System.out.println("Ingrese la curp: ");
-                persona.setCurp(read.next());
+                persona.setCurp(read.next().toUpperCase());
                 System.out.println("Ingrese la edad: ");
                 persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
                 persona.setSexo(read.next());
                 if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
-                    ciudadano.setIne(read.next());
+                    ciudadano.setIne(read.next().toUpperCase());
                     if (persona.getSexo().equals("masculino")){
                         System.out.println("Ingrese su Cartilla: ");
-                        ciudadano.setCartilla(read.next());
+                        ciudadano.setCartilla(read.next().toUpperCase());
                     }
                 }
             }
@@ -69,7 +69,7 @@ public class Prueba {
         System.out.println(persona.getName() + " "+persona.getApellido1() + " "+persona.getApellido2());
         System.out.println("Edad: " + persona.getEdad());
         System.out.println("Sexo: " +  persona.getSexo());
-        System.out.println("Curp: " + persona.getCurp().toUpperCase());
+        System.out.println("Curp: " + persona.getCurp());
 
         if(persona.getEdad() >= 18) {
             System.out.println("INE: " + ciudadano.getIne());
