@@ -29,7 +29,7 @@ public class Prueba {
                         ciudadano.setCartilla(read.next());
                     }
                 }
-                
+
             }
             catch(NullPointerException npe){
                 System.out.println(npe);
@@ -62,15 +62,15 @@ public class Prueba {
             }
             break;
         }
-        
+
         System.out.println("_____________________________________");
-        System.put.printlm(" FELICIDADES, ERES CIUDADANO");
+        //System.out.printlm(" FELICIDADES, ERES CIUDADANO");
         System.out.println("_____________________________________");
         System.out.println(persona.getName() + " "+persona.getApellido1() + " "+persona.getApellido2());
         System.out.println("Edad: " + persona.getEdad());
         System.out.println("Sexo: " +  persona.getSexo());
-        System.out.println("Curp: " + persona.getCurp());
-        
+        System.out.println("Curp: " + persona.getCurp().toUpperCase());
+
         if(persona.getEdad() >= 18) {
             System.out.println("INE: " + ciudadano.getIne());
             if(persona.getSexo().equals("masculino")){
