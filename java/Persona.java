@@ -27,7 +27,13 @@ public class Persona {
     }
 
     public void setCurp(String curp) throws Error {
-        if(!curp.equals(" ")) this.curp = curp;
+        this.curp="";
+        if(!curp.equals(" ")){
+        for (int x=0; x < curp.length(); x++) {
+            if (curp.charAt(x) != ' ')
+              this.curp += curp.charAt(x);
+          }
+        }
         else throw new Error("La curp no puede estar vacía.");
     }
 
@@ -80,5 +86,11 @@ public class Persona {
 
     public String getCartilla() {
         return null;
+    }
+
+    public String toString(){
+        String str = this.getClass().getSimpleName() + nombre + " " + apellido1 + " " + apellido2 +"\n";
+        str += "Curp: " + curp +"\nEdad: " + edad + "\nSexo: " + sexo;
+        return str;
     }
 }

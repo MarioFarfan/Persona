@@ -109,21 +109,12 @@ public class Prueba {
             //res = true;
         //}
         finally{
-        System.out.println("_____________________________________");
-        System.out.println("_____________________________________");
-        System.out.println("Nombre: " + persona.getName() + " "+persona.getApellido1() + " "+persona.getApellido2());
-        System.out.println("Edad: " + persona.getEdad());
-        System.out.println("Sexo: " +  persona.getSexo());
-        System.out.println("Curp: " + persona.getCurp());
-        
-        if(persona.getEdad() >= 18) {
-            System.out.println("INE: " + ciudadano.getIne());
-            if(persona.getSexo().equals("masculino")){
-                System.out.println("Cartilla: " + ciudadano.getCartilla());
-            }
-        }
-        System.out.println("_____________________________________");
-        System.out.println("_____________________________________");
+            System.out.println("_____________________________________");
+            System.out.println("_____________________________________");
+            System.out.println(persona.toString());
+            System.out.println(ciudadano.toString());
+            System.out.println("_____________________________________");
+            System.out.println("_____________________________________");
       }
     }
 }
