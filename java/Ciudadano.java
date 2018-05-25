@@ -27,11 +27,7 @@ public class Ciudadano extends Persona {
 
     public void setCartilla(String cartilla) throws Error {
         if(!cartilla.equals(" ")) this.cartilla = cartilla;
-<<<<<<< HEAD
         else throw new Error("No se puede crear un ciudadano sin cartilla");
-=======
-        else throw new Error("La Cartilla no puede estar vacía.");
->>>>>>> 18789bef60db97b91942d4619b8aa47c2c06448a
     }
 
     public String getCartilla(){
