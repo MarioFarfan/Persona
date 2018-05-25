@@ -8,7 +8,7 @@ public class Persona {
     private int edad;
     private String curp;
     private String sexo;
-    private String [] sexOptions = new String []{"masculino","femenino"};;
+    private String [] sexOptions = new String [] {"masculino","femenino"};;
 
     
     public void setName(String nombre) throws Error {
