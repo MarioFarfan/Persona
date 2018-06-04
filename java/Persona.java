@@ -89,7 +89,7 @@ public class Persona {
     }
 
     public String toString(){
-        String str = this.getClass().getSimpleName() + nombre + " " + apellido1 + " " + apellido2 +"\n";
+        String str = "PERSONA\n" + nombre + " " + apellido1 + " " + apellido2 +"\n";
         str += "Curp: " + curp +"\nEdad: " + edad + "\nSexo: " + sexo;
         return str;
     }
