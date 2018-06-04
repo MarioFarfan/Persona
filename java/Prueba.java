@@ -69,7 +69,7 @@ public class Prueba {
 	}
 
     public static void main (String [] args){
-        ArrayList <Persona> arr = new ArrayList();
+        ArrayList <Ciudadano> arr = new ArrayList();
         Scanner read = new Scanner(System.in);
         Persona persona = new Persona();
 
@@ -92,6 +92,13 @@ public class Prueba {
                 if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
                     String ine = read.next().toUpperCase();
+                    if (persona.getSexo().equals("masculino")){
+                        System.out.println("Ingresa tu cartilla militar: ");
+                        String cartilla = read.next().toUpperCase();
+                        Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
+                        arr.add(ciudadano);
+                    } else {
+
                     System.out.println("¿Tienes cartilla Militar?");
                     System.out.println("1.- Si \n2.-No");
                     int i = read.nextInt();
@@ -101,14 +108,9 @@ public class Prueba {
                         String cartilla = read.nextLine().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                         arr.add(ciudadano);
-                    }
-                    
-                    else {
-                        Ciudadano ciudadano = new Ciudadano(persona, ine);
-                        arr.add(ciudadano);
+                        }
                     }
                 }
-                arr.add(persona);
             }
             catch (InputMismatchException ime){
                 System.out.println(ime + "\n La edad no debe contener caracteres");
@@ -137,7 +139,6 @@ public class Prueba {
                             arr.add(ciudadano);
                         }
                     }
-                    arr.add(persona);
                 }
             catch(NullPointerException npe){
                 System.out.println(npe);
@@ -179,7 +180,6 @@ public class Prueba {
                             arr.add(ciudadano);
                         }
                     }
-                    arr.add(persona);
                 }
             //res = true;
         //}
@@ -189,7 +189,7 @@ public class Prueba {
             System.out.println("_____________________________________");
             System.out.println("_____________________________________");
             System.out.println(persona.toString());
-            //System.out.println(ciudadano.toString());
+            System.out.println(ciudadano.toString());
             System.out.println("_____________________________________");
             System.out.println("_____________________________________");
       }
@@ -200,8 +200,7 @@ public class Prueba {
 		try {
 			data = pa.flujoSalida(miArchivo);
 			for(int x = 0 ; x < arr.size(); x++){
-                if (arr.get(x)==Ciudadano){
-				pa.guardarCiudadano (data,arr.get(x));}
+				pa.guardarCiudadano (data,arr.get(x));
 			}
 		} catch (IOException e) {
 			System.err.println(e);
