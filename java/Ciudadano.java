@@ -46,7 +46,7 @@ public class Ciudadano extends Persona {
 
     public String toString() {
         String str = super.toString();
-        str += "\n" + this.getClass().getSimpleName() + "\nINE: " + ine +"\nCartilla: " + cartilla;
+        str += "\n" + this.getClass().getSimpleName() + "\nINE: " + ine +"\nCartilla: " + cartilla + "\n";
         return str;
     }
 }

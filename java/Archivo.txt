@@ -4,4 +4,11 @@ Curp: null
 Edad: 0
 Sexo: nullCiudadano
 INE: FSAD57V
-Cartilla: V6D48
+Cartilla: V6D48PERSONA
+null null null
+Curp: null
+Edad: 0
+Sexo: null
+Ciudadano
+INE: VCDFV45
+Cartilla: VDAS54

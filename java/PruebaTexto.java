@@ -33,6 +33,7 @@ public class PruebaTexto {
                         System.out.println("Ingresa tu cartilla militar: ");
                         String cartilla = read.next().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
+                        System.out.println(ciudadano.toString());
                         try {
                             
                             File archivo = new File("Archivo.txt");
@@ -81,7 +82,7 @@ public class PruebaTexto {
                             
                         }
                     }
-                }
+                }else {System.out.println(persona.toString());}
             }
             catch (InputMismatchException ime){
                 System.out.println(ime + "\n La edad no debe contener caracteres");
@@ -231,7 +232,7 @@ public class PruebaTexto {
         finally{
             System.out.println("_____________________________________");
             System.out.println("_____________________________________");
-            System.out.println(persona.toString());
+            //System.out.println(persona.toString());
             //System.out.println(ciudadano.toString());
             System.out.println("_____________________________________");
             System.out.println("_____________________________________");
