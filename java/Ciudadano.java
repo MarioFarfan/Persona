@@ -6,7 +6,7 @@ public class Ciudadano extends Persona {
 
 
     public Ciudadano (Persona persona, String ine)throws Error {
-        
+
         this.ine = ine;
     }
 
