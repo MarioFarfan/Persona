@@ -3,14 +3,15 @@ public class Ciudadano extends Persona {
 
     private String ine;
     private String cartilla;
-
+    private Persona persona;
 
     public Ciudadano (Persona persona, String ine)throws Error {
-
+        this.persona = persona;
         this.ine = ine;
     }
 
     public Ciudadano (Persona persona,  String ine, String cartilla)throws Error {
+        this.persona = persona;
         this.ine = ine;
         if(!cartilla.equals(" ")) this.cartilla = cartilla;
         else throw new Error("No eres ciudadano");
@@ -45,9 +46,7 @@ public class Ciudadano extends Persona {
     }
 
     public String toString() {
-        String str = super.toString();
-        str += "\n" + this.getClass().getSimpleName() + "\nINE: " + ine +"\nCartilla: " + cartilla + "\n";
-        return str;
+        return this.getClass().getSimpleName() + "  " + persona.toString() + "\nINE: " + ine +"\nCartilla: " + cartilla + "\n" + "\n";
     }
 }
 

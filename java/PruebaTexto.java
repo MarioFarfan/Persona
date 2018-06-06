@@ -33,6 +33,7 @@ public class PruebaTexto {
                         System.out.println("Ingresa tu cartilla militar: ");
                         String cartilla = read.next().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
+                        persona.toString();
                         System.out.println(ciudadano.toString());
                         try {
                             
