@@ -6,10 +6,9 @@ public class PruebaTexto {
 
 
     public static void main (String [] args) throws IOException{
-        ArrayList <Ciudadano> arr = new ArrayList();
         Scanner read = new Scanner(System.in);
         Persona persona = new Persona();
-        PrintWriter outputStream = null;
+        BufferedWriter out = null;  
 
         boolean res=false;
         //while (res==false){
@@ -25,8 +24,8 @@ public class PruebaTexto {
                 System.out.println("Ingrese la edad: ");
                 persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
-                persona.setSexo(read.next());
                 read.nextLine();
+                persona.setSexo(read.next());
                 if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
                     String ine = read.next().toUpperCase();
@@ -34,16 +33,18 @@ public class PruebaTexto {
                         System.out.println("Ingresa tu cartilla militar: ");
                         String cartilla = read.next().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                        arr.add(ciudadano);
                         try {
-                            outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                            outputStream.println(ciudadano.toString());
                             
-                        } finally {
-                            if (outputStream != null) {
-                                outputStream.close();
-                            }
+                            File archivo = new File("Archivo.txt");
+                            FileWriter escribir = new FileWriter(archivo, true);
+                            escribir.write(ciudadano.toString());
+                            escribir.close();
                         }
+                        catch (Exception e) {
+                            System.out.println("Error al escribir");
+                        }
+                        
+                        
                     } else {
 
                     System.out.println("¿Tienes cartilla Militar?");
@@ -54,16 +55,30 @@ public class PruebaTexto {
                         System.out.println("Ingrese su Cartilla: ");
                         String cartilla = read.nextLine().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                        arr.add(ciudadano);
-                        try {
-                            outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                            outputStream.println(ciudadano.toString());
-                            
-                        } finally {
-                            if (outputStream != null) {
-                                outputStream.close();
-                            }
+                        try {   
+                            out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                            out.write(ciudadano.toString());   
+                        } catch (IOException e) {   
+                            System.out.println(e);   
+                        } finally { 
+                            if (out != null) {   
+                                out.close();   
+                            }   
+                        } 
                         }
+                        else {
+                            Ciudadano ciudadano = new Ciudadano(persona, ine);
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException e) {   
+                                System.out.println(e);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
+                            } 
+                            
                         }
                     }
                 }
@@ -74,7 +89,7 @@ public class PruebaTexto {
                 read.next();
                 persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
-                read.next();
+                //read.next();
                 persona.setSexo(read.nextLine());
                 
                 if (persona.getEdad() >= 18 ){
@@ -87,29 +102,29 @@ public class PruebaTexto {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException e) {   
+                                System.out.println(e);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
                             }
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException e) {   
+                                System.out.println(e);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
                             }
                         }
                     }
@@ -130,33 +145,33 @@ public class PruebaTexto {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException e) {   
+                                System.out.println(e);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
                             }
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException e) {   
+                                System.out.println(e);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
+                            }
                             }
                         }
                     }
-            }
             catch(Error e){
                 System.out.println(e);
                 System.out.println("Ingrese el nombre: ");
@@ -182,29 +197,29 @@ public class PruebaTexto {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException err) {   
+                                System.out.println(err);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
                             }
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            arr.add(ciudadano);
-                            try {
-                                outputStream = new PrintWriter(new FileWriter("Archivo personas.txt"));
-                                outputStream.println(ciudadano.toString());
-                                
-                            } finally {
-                                if (outputStream != null) {
-                                    outputStream.close();
-                                }
+                            try {   
+                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
+                                out.write(ciudadano.toString());   
+                            } catch (IOException err) {   
+                                System.out.println(err);   
+                            } finally { 
+                                if (out != null) {   
+                                    out.close();   
+                                }   
                             }
                         }
                     }

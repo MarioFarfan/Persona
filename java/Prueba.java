@@ -97,7 +97,7 @@ public class Prueba {
                         System.out.println("Ingresa tu cartilla militar: ");
                         String cartilla = read.next().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                        arr.add(ciudadano);
+                        
                     } else {
 
                     System.out.println("¿Tienes cartilla Militar?");
@@ -108,7 +108,7 @@ public class Prueba {
                         System.out.println("Ingrese su Cartilla: ");
                         String cartilla = read.nextLine().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                        arr.add(ciudadano);
+                        
                         }
                     }
                 }
@@ -132,12 +132,12 @@ public class Prueba {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            arr.add(ciudadano);
+                            
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            arr.add(ciudadano);
+                            
                         }
                     }
                 }
@@ -173,12 +173,12 @@ public class Prueba {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            arr.add(ciudadano);
+                            
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            arr.add(ciudadano);
+                            
                         }
                     }
                 }

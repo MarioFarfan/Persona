@@ -41,7 +41,7 @@ public class Persona {
 		boolean valid = false;
 		if(!sexo.equals(" ")) {
 			for(byte i=0; i<sexOptions.length; i++) {
-				if(sexOptions[i].equals(sexo.toLowerCase())) {
+				if(sexOptions[i].equals(sexo)) {
 					this.sexo = sexo;
 					valid = true;
 					break;

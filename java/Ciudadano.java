@@ -44,11 +44,10 @@ public class Ciudadano extends Persona {
         return cartilla;
     }
 
-    public String toString() throws Error{
-        if (super.getSexo().equals("masculino")&& cartilla.equals(null)){
-        throw new Error("no se puede crear ciudadano");}
-        else {
-        return super.toString() + this.getClass().getSimpleName() + "\nINE: " + ine +"\nCartilla: " + cartilla;
+    public String toString() {
+        String str = super.toString();
+        str += "\n" + this.getClass().getSimpleName() + "\nINE: " + ine +"\nCartilla: " + cartilla;
+        return str;
     }
 }
-}
+

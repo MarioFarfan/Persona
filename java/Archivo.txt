@@ -1,0 +1,7 @@
+PERSONA
+null null null
+Curp: null
+Edad: 0
+Sexo: nullCiudadano
+INE: FSAD57V
+Cartilla: V6D48
