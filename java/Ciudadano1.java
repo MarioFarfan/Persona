@@ -1,16 +1,16 @@
 import java.io.Serializable;
-public class Ciudadano extends Persona implements Serializable{
+public class Ciudadano1 extends Persona implements Serializable {
 
     private String ine;
     private String cartilla;
     private Persona persona;
 
-    public Ciudadano (Persona persona, String ine)throws Error {
+    public Ciudadano1 (Persona persona, String ine)throws Error {
         this.persona = persona;
         this.ine = ine;
     }
 
-    public Ciudadano (Persona persona,  String ine, String cartilla)throws Error {
+    public Ciudadano1 (Persona persona,  String ine, String cartilla)throws Error {
         this.persona = persona;
         this.ine = ine;
         if(!cartilla.equals(" ")) this.cartilla = cartilla;
