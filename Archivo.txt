@@ -1,0 +1,16 @@
+Ciudadano  PERSONA
+Erik Leonel Santiago 
+Curp: 1234
+ Edad: 80
+Sexo: masculino
+INE: 99876
+Cartilla: 65431
+
+Ciudadano  PERSONA
+a b c
+Curp: D
+Edad: 50
+Sexo: masculino
+INE: 564ASD
+Cartilla: 987ADS
+
