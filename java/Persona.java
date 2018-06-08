@@ -1,7 +1,7 @@
 import java.text.Normalizer;
+import java.io.Serializable;
 
-
-public class Persona {
+public class Persona implements Serializable {
     private String nombre;
     private String apellido1;
     private String apellido2;

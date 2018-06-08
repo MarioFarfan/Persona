@@ -25,7 +25,7 @@ public class Buscar{
 		try {
 		 	in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(archivoEntrada)));
 		} catch (Exception e){
-			System.err.println(e);
+			System.err.println(e + "error 1");
 			throw e;
 		} finally {
 			return in;
@@ -35,18 +35,16 @@ public class Buscar{
 	
 	public Ciudadano leerCiudadano(ObjectInputStream in,String curp) throws Exception{
 		Ciudadano clectura,c = null;
-	
-		
 		try {
 		    while (true) {
 				clectura = (Ciudadano) in.readObject();			
-				if (clectura.getCurp() == curp){
+				if (clectura.getCurp().equals(curp)){
 		        	c = clectura;
 				}
 		        
 		    }
 		} catch (Exception e) {
-			System.err.println(e);
+			System.err.println(e + "Error 2");
 			throw e;
 		} finally {
 			return c;
@@ -55,23 +53,27 @@ public class Buscar{
 	}
 	
 	public static void main (String[] args){
-		
+		Buscar  b = new Buscar();
         Scanner read = new Scanner(System.in);
         System.out.println ("BUSCAR CIUDADANO");
-		ObjectInputStream data = null;
-        Ciudadano cEncontrado = null;
-        Buscar  cu = new Buscar();
+		ObjectInputStream dataIn = null;
+		Ciudadano cEncontrado = null;
+		String miArchivo = "Texto";
+        
 		try {
-            System.out.println("Ingrese la curp del ciudadano que desea buscar: ");
-			data = cu.flujoEntrada("Archivo.txt");
-			cEncontrado = cu.leerCiudadano(data, read.next());
+			System.out.println("Ingrese la curp del ciudadano que desea buscar: ");
+			String curp = read.next().toString();
+			dataIn = b.flujoEntrada(miArchivo);
+			cEncontrado = b.leerCiudadano(dataIn, curp);
 		} catch (Exception e){
 			System.err.println(e);	
 		} finally {
-			if ( data != null) {
+			if ( dataIn != null) {
 				try {
-					data.close();
-				}catch(Exception e){}
+					dataIn.close();
+				}catch(Exception e){
+					System.out.print(e + "Error 3");
+				}
 				
 			}
 		}

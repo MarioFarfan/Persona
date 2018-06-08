@@ -8,7 +8,8 @@ public class PruebaTexto {
     public static void main (String [] args) throws IOException{
         Scanner read = new Scanner(System.in);
         Persona persona = new Persona();
-        BufferedWriter out = null;  
+        BufferedWriter out = null;
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Texto", true));
 
         boolean res=false;
         //while (res==false){
@@ -35,16 +36,8 @@ public class PruebaTexto {
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                         persona.toString();
                         System.out.println(ciudadano.toString());
-                        try {
-                            
-                            File archivo = new File("Archivo.txt");
-                            FileWriter escribir = new FileWriter(archivo, true);
-                            escribir.write(ciudadano.toString());
-                            escribir.close();
-                        }
-                        catch (Exception e) {
-                            System.out.println("Error al escribir");
-                        }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                         
                         
                     } else {
@@ -57,29 +50,13 @@ public class PruebaTexto {
                         System.out.println("Ingrese su Cartilla: ");
                         String cartilla = read.nextLine().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                        try {   
-                            out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                            out.write(ciudadano.toString());   
-                        } catch (IOException e) {   
-                            System.out.println(e);   
-                        } finally { 
-                            if (out != null) {   
-                                out.close();   
-                            }   
-                        } 
+                        oos.writeObject(ciudadano);
+                        oos.close();
                         }
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException e) {   
-                                System.out.println(e);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            } 
+                            oos.writeObject(ciudadano);
+                            oos.close(); 
                             
                         }
                     }
@@ -104,30 +81,14 @@ public class PruebaTexto {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException e) {   
-                                System.out.println(e);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException e) {   
-                                System.out.println(e);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                         }
                     }
                 }
@@ -148,29 +109,17 @@ public class PruebaTexto {
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                             try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
+                                oos.writeObject(ciudadano);
+                                oos.close();
                             } catch (IOException e) {   
                                 System.out.println(e);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            } 
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException e) {   
-                                System.out.println(e);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                             }
                         }
                     }
@@ -199,46 +148,19 @@ public class PruebaTexto {
                             System.out.println("Ingrese su Cartilla: ");
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException err) {   
-                                System.out.println(err);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                         }
                         
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
-                            try {   
-                                out = new BufferedWriter(new FileWriter("Archivo.txt", true));   
-                                out.write(ciudadano.toString());   
-                            } catch (IOException err) {   
-                                System.out.println(err);   
-                            } finally { 
-                                if (out != null) {   
-                                    out.close();   
-                                }   
-                            }
+                            oos.writeObject(ciudadano);
+                            oos.close();
                         }
                     }
                 }
             //res = true;
         //}
-
-        
-        finally{
-            System.out.println("_____________________________________");
-            System.out.println("_____________________________________");
-            //System.out.println(persona.toString());
-            //System.out.println(ciudadano.toString());
-            System.out.println("_____________________________________");
-            System.out.println("_____________________________________");
-      }
-
 
     }
 }

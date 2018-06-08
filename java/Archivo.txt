@@ -14,3 +14,11 @@ Sexo: masculino
 INE: 213I123II
 Cartilla: 987654321
 
+Ciudadano  PERSONA
+mario farfan cahvez
+Curp: FAR
+Edad: 20
+Sexo: masculino
+INE: VDSVS
+Cartilla: ADCSD
+

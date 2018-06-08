@@ -45,6 +45,10 @@ public class Ciudadano extends Persona implements Serializable{
         return cartilla;
     }
 
+    public String getCurp(){
+        return super.getCurp();
+    }
+
     public String toString() {
         return this.getClass().getSimpleName() + "  " + persona.toString() + "\nINE: " + ine +"\nCartilla: " + cartilla + "\n" + "\n";
     }
