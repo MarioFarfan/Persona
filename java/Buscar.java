@@ -39,15 +39,16 @@ public class Buscar{
 		    while (true) {
 				clectura = (Ciudadano) in.readObject();			
 				if (clectura.getCurp().equals(curp)){
-		        	c = clectura;
+					c = clectura;
+					break;
 				}
 		        
-		    }
+			}
+			
+			return c;
 		} catch (Exception e) {
 			System.err.println(e + "Error 2");
 			throw e;
-		} finally {
-			return c;
 		}
 		
 	}

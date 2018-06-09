@@ -1,9 +1,55 @@
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
-
+//Clase en la que se solicitan los datos al usuario para despues buscarlo
 public class PruebaTexto {
 
+    public ObjectOutputStream flujoSalida(String archivoSalida) throws Exception {
+		ObjectOutputStream out= null;
+		try {
+		 	out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(archivoSalida)));
+		} catch (Exception e){
+			System.err.println(e);
+			throw e;
+		} finally{
+			return out;
+		}
+	}
+// metodo que recibe un String que recibe el nombre del arvhico.	
+	public ObjectInputStream flujoEntrada(String archivoEntrada) throws Exception {
+		ObjectInputStream in = null;
+		try {
+		 	in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(archivoEntrada)));
+		} catch (Exception e){
+			System.err.println(e + "error 1");
+			throw e;
+		} finally {
+			return in;
+		}
+	} 
+	
+	
+	public Ciudadano leerCiudadano(ObjectInputStream in,String curp) throws Exception{
+        Ciudadano clectura = null;
+        Ciudadano c = null;
+        if (in != null){
+            try {
+                while (true) {
+                    clectura = (Ciudadano) in.readObject();			
+                    if (clectura.getCurp().equals(curp)){
+                        c = clectura;
+                    }
+                    
+                }
+            } catch (Exception e) {
+                System.err.println(e + "    ERROR 2");
+                throw e;
+            } finally {
+                return c;
+            }
+        }
+        return c;
+	}
 
     public static void main (String [] args) throws IOException{
         Scanner read = new Scanner(System.in);
@@ -158,9 +204,35 @@ public class PruebaTexto {
                             oos.close();
                         }
                     }
-                }
-            //res = true;
-        //}
+                }          
+        while(true){
+//
+        System.out.println ("BUSCAR CIUDADANO");
+		ObjectInputStream dataIn = null;
+		Ciudadano cEncontrado = null;
+		String miArchivo = "Texto";
+        PruebaTexto b = new PruebaTexto();
+		try {
+			System.out.println("Ingrese la curp del ciudadano que desea buscar: ");
+			String curp = read.next();
+			dataIn = b.flujoEntrada(miArchivo);
+			cEncontrado = b.leerCiudadano(dataIn, curp);
+		} catch (Exception e){
+			System.err.println(e);	
+		} finally {
+			if ( dataIn != null) {
+				try {
+					dataIn.close();
+				}catch(Exception e){
+					System.out.print(e + "Error 3");
+				}
+				
+			}
+		}
+		if ( cEncontrado != null){
+			System.out.println(cEncontrado.toString());
+        }
+    }
 
     }
 }
