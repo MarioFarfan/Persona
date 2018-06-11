@@ -1,17 +1,21 @@
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 public class Buscar{
 	
-	public ObjectOutputStream flujoSalida(String archivoSalida) throws Exception {
-		ObjectOutputStream out= null;
+	
+	public DataOutputStream flujoSalida(String archivoSalida) throws Exception{
+		DataOutputStream out= null;
 		try {
-		 	out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(archivoSalida)));
+		 	out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(archivoSalida)));
 		} catch (Exception e){
 			System.err.println(e);
 			throw e;
@@ -20,67 +24,109 @@ public class Buscar{
 		}
 	}
 	
-	public ObjectInputStream flujoEntrada(String archivoEntrada) throws Exception {
-		ObjectInputStream in = null;
+	public DataInputStream flujoEntrada(String archivoEntrada) throws Exception {
+		DataInputStream in = null;
 		try {
-		 	in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(archivoEntrada)));
+		 	in = new DataInputStream(new BufferedInputStream(new FileInputStream(archivoEntrada)));
 		} catch (Exception e){
-			System.err.println(e + "error 1");
+			System.err.println(e);
 			throw e;
-		} finally {
+		} finally{
 			return in;
 		}
 	} 
 	
-	
-	public Ciudadano leerCiudadano(ObjectInputStream in,String curp) throws Exception{
-		Ciudadano clectura,c = null;
-		try {
-		    while (true) {
-				clectura = (Ciudadano) in.readObject();			
-				if (clectura.getCurp().equals(curp)){
-					c = clectura;
-					break;
-				}
-		        
+	public boolean guardarProducto(DataOutputStream out, Ciudadano ciudadano) throws Exception{
+		boolean res = false;
+		if (out != null && ciudadano != null){
+			try{
+				out.writeUTF(ciudadano.getName());
+				out.writeUTF(ciudadano.getApellido1());
+				out.writeUTF(ciudadano.getApellido2());
+				out.writeInt(ciudadano.getEdad());
+				out.writeUTF(ciudadano.getCurp());
+				out.writeUTF(ciudadano.getSexo());
+				out.writeUTF(ciudadano.getIne());	
+				out.writeUTF(ciudadano.getCartilla());
+				res = true;
+			} catch (Exception e){
+				System.err.println(e);
+				throw e;
+			} finally {
+				return res;
 			}
-			
-			return c;
-		} catch (Exception e) {
-			System.err.println(e + "Error 2");
-			throw e;
+		}
+		else {
+			return res;
 		}
 		
 	}
 	
-	public static void main (String[] args){
-		Buscar  b = new Buscar();
-        Scanner read = new Scanner(System.in);
-        System.out.println ("BUSCAR CIUDADANO");
-		ObjectInputStream dataIn = null;
-		Ciudadano cEncontrado = null;
-		String miArchivo = "Texto";
-        
+	public Ciudadano leerProducto(DataInputStream in,String crp) throws Exception{
+		Ciudadano p = null;
+		String nombre;
+    	String apellido1;
+    	String apellido2;
+		int edad;
+		String curp;
+		String sexo;
+		String ine;
+		String cartilla;
+		
 		try {
-			System.out.println("Ingrese la curp del ciudadano que desea buscar: ");
-			String curp = read.next().toString();
-			dataIn = b.flujoEntrada(miArchivo);
-			cEncontrado = b.leerCiudadano(dataIn, curp);
-		} catch (Exception e){
-			System.err.println(e);	
-		} finally {
-			if ( dataIn != null) {
-				try {
-					dataIn.close();
-				}catch(Exception e){
-					System.out.print(e + "Error 3");
+		    while (true) {
+				nombre = in.readUTF();
+				apellido1 = in.readUTF();
+				apellido2 = in.readUTF();
+				edad = in.readInt();
+				curp = in.readUTF();
+				sexo = in.readUTF();
+				ine = in.readUTF();
+				cartilla = in.readUTF();
+				if (curp.equals(crp)){
+					if (cartilla!=null){
+		        		p = new Ciudadano(nombre, apellido1, apellido2, edad, curp, sexo, ine);
+					} else {
+						p = new Ciudadano(nombre, apellido1, apellido2, edad, curp, sexo, ine, cartilla);
+					}
 				}
-				
-			}
+				break;
+		    }
+		} catch (Exception e) {
+			System.err.println(e + "Error 1");
+			throw e;
+		} finally {
+			return p;
 		}
-		if ( cEncontrado != null){
-			System.out.println(cEncontrado.toString());
-		}
-			
+		
+	}
+	
+	public static void main (String[] args) throws IOException{
+		Scanner read = new Scanner(System.in);
+		System.out.println("BUSCAR CIUDADANO");
+		System.out.println("Ingrese la INE: ");
+		String ine = read.next().toUpperCase();
+		FileInputStream file = new FileInputStream("Texto");
+    	    try{
+    	        while(true){
+    	            ObjectInputStream ois = new ObjectInputStream(file);
+    	            Ciudadano c;
+    	            try {
+    	                c = (Ciudadano)ois.readObject();
+    	            }catch(EOFException eof){
+    	                System.out.println(eof);
+    	                break;
+					}
+					if (c.getIne().equals(ine)){
+						System.out.println(c + "Encontrado");
+					}
+
+    	            System.out.println("********************************");
+    	        }
+    	    }catch(ClassNotFoundException e){
+    	        System.out.println(e);
+    	    } catch (IOException io){
+    	        System.out.println(io);
+			} finally{ file.close();}	
 	}
 }

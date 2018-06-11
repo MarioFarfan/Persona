@@ -16,6 +16,28 @@ public class Ciudadano extends Persona implements Serializable{
         if(!cartilla.equals(" ")) this.cartilla = cartilla;
         else throw new Error("No eres ciudadano");
     }
+    public Ciudadano (String nombre, String apellido1, String apellido2, int edad, String curp, 
+    String sexo, String ine, String cartilla) {
+        super.setName(nombre);
+        super.setApellido1(apellido1);
+        super.setApellido2(apellido2);
+        super.setEdad(edad);
+        super.setCurp(curp);
+        super.setSexo(sexo);
+        this.ine = ine;
+        this.cartilla = cartilla;
+    }
+
+    public Ciudadano (String nombre, String apellido1, String apellido2, int edad, String curp, 
+    String sexo, String ine) {
+        super.setName(nombre);
+        super.setApellido1(apellido1);
+        super.setApellido2(apellido2);
+        super.setEdad(edad);
+        super.setCurp(curp);
+        super.setSexo(sexo);
+        this.ine = ine;
+    }
 
     public void setIne(String ine) throws Error {
         if(!ine.equals(" ")){
