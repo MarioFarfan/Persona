@@ -13,7 +13,7 @@ public class PruebaTexto {
 
         System.out.println("ELIJA UNA OPCION DEL MENÚ");
         System.out.println("1.- Agregar Persona/Ciudadano");
-        System.out.println("2.- Buscar Ciudadano");
+        System.out.println("2.- Buscar Ciudadano por INE");
         System.out.println("3.- Enlistar ciudadanos");
         switch (read.nextInt()){
             case 1:
