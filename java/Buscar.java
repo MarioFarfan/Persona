@@ -10,33 +10,55 @@ import java.io.IOException;
 import java.io.*;
 import java.util.Scanner;
 public class Buscar{
-	
+
+	public void imprimir(){
+		try{
+            // Se crea un ObjectInputStream
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Texto"));
+            
+            // Se lee el primer objeto
+            Object c = ois.readObject();
+            
+            // Mientras haya objetos
+            while (c!=null)
+            {
+                if (c instanceof Ciudadano)
+                    System.out.println(c);
+                c = ois.readObject();
+            }
+            ois.close();
+        }
+        catch (EOFException e1){
+            System.out.println ("Fin de fichero");
+        }
+        catch (Exception e2){
+            e2.printStackTrace();
+		}
+	}
 	public static void main (String[] args) throws IOException{
+
+		Buscar b = new Buscar();
+		b.imprimir();
 		Scanner read = new Scanner(System.in);
 		System.out.println("BUSCAR CIUDADANO");
 		System.out.println("Ingrese la INE: ");
 		String ine = read.next().toUpperCase();
-		FileInputStream file = new FileInputStream("Texto");
-    	    try{
-    	        while(true){
-    	            ObjectInputStream ois = new ObjectInputStream(file);
-    	            Ciudadano c;
-    	            try {
-    	                c = (Ciudadano)ois.readObject();
-    	            }catch(EOFException eof){
-    	                System.out.println(eof);
-    	                break;
-					}
-					if (c.getIne().equals(ine)){
-						System.out.println(c + "Encontrado");
-					}
-
-    	            System.out.println("********************************");
-    	        }
-    	    }catch(ClassNotFoundException e){
-    	        System.out.println(e);
-    	    } catch (IOException io){
-    	        System.out.println(io);
-			} finally{ file.close();}	
+		try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Texto"));
+            Ciudadano c = (Ciudadano)ois.readObject();
+            while (c!=null)
+            {
+                if (c instanceof Ciudadano && c.getIne().equals(ine))
+                    System.out.println(c);
+                c = (Ciudadano)ois.readObject();
+            }
+            ois.close();
+        }
+        catch (EOFException e1){
+            System.out.println ("Resultado");
+        }
+        catch (Exception e2){
+            e2.printStackTrace();
+        }
 	}
 }

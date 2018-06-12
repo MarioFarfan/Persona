@@ -3,13 +3,13 @@ import java.io.*;
 import java.util.*;
 //Clase en la que se solicitan los datos al usuario para despues buscarlo
 public class PruebaTexto {
-
+    
 
     public static void main (String [] args) throws IOException{
         Scanner read = new Scanner(System.in);
         Persona persona = new Persona();
-        BufferedWriter out = null;
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Texto", true));
+        PruebaTexto p = new PruebaTexto();
+        MiObjectOutputStream oos = new MiObjectOutputStream(new FileOutputStream("Texto",true));
 
         System.out.println("ELIJA UNA OPCION DEL MENÚ");
         System.out.println("1.- Agregar Persona/Ciudadano");
@@ -31,7 +31,7 @@ public class PruebaTexto {
                 System.out.println("Ingrese la edad: ");
                 persona.setEdad(read.nextInt());
                 System.out.println("Ingrese el sexo: ");
-                read.nextLine();
+                read.nextLine().toLowerCase();
                 persona.setSexo(read.next());
                 if (persona.getEdad() >= 18 ){
                     System.out.println("Ingrese su INE: ");
@@ -43,8 +43,7 @@ public class PruebaTexto {
                         persona.toString();
                         System.out.println(ciudadano.toString());
                         try {   
-                            oos.writeObject(ciudadano);
-                            oos.close();
+                            oos.writeUnshared(ciudadano);
                         } catch (IOException e) {   
                             System.out.println(e);   
                         } finally{oos.close();}
@@ -61,7 +60,7 @@ public class PruebaTexto {
                         String cartilla = read.next().toUpperCase();
                         Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                         try {   
-                            oos.writeObject(ciudadano);
+                            oos.writeUnshared(ciudadano);
                             oos.close();
                         } catch (IOException e) {   
                             System.out.println(e);   
@@ -70,7 +69,7 @@ public class PruebaTexto {
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
                             try {    
-                                oos.writeObject(ciudadano);} 
+                                oos.writeUnshared(ciudadano);} 
                                 catch(NullPointerException nl){
                                     System.out.print(nl);
                                 } finally {
@@ -101,7 +100,7 @@ public class PruebaTexto {
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException e) {   
                                 System.out.println(e);   
@@ -111,7 +110,7 @@ public class PruebaTexto {
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException e) {   
                                 System.out.println(e);   
@@ -136,7 +135,7 @@ public class PruebaTexto {
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException e) {   
                                 System.out.println(e);   
@@ -146,7 +145,7 @@ public class PruebaTexto {
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException e) {   
                                 System.out.println(e);   
@@ -180,7 +179,7 @@ public class PruebaTexto {
                             String cartilla = read.nextLine().toUpperCase();
                             Ciudadano ciudadano = new Ciudadano(persona, ine, cartilla);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException io) {   
                                 System.out.println(io);   
@@ -190,7 +189,7 @@ public class PruebaTexto {
                         else {
                             Ciudadano ciudadano = new Ciudadano(persona, ine);
                             try {   
-                                oos.writeObject(ciudadano);
+                                oos.writeUnshared(ciudadano);
                                 oos.close();
                             } catch (IOException io) {   
                                 System.out.println(io);   
@@ -204,58 +203,45 @@ public class PruebaTexto {
                 System.out.println("BUSCAR CIUDADANO");
 		        System.out.println("Ingrese la INE: ");
 		        String ine = read.next().toUpperCase();
-		        FileInputStream file = new FileInputStream("Texto");
-    	             try{
-    	                 while(true){
-    	                     ObjectInputStream ois = new ObjectInputStream(file);
-    	                     Ciudadano c;
-    	                     try {
-    	                         c = (Ciudadano)ois.readObject();
-    	                     }catch(EOFException eof){
-    	                         System.out.println(eof);
-    	                         break;
-		        				}
-		        				if (c.getIne().equals(ine)){
-                                    System.out.println("********************************");
-                                    System.out.println("RESULTADOS DE LA BUSQUEDA");
-		        					System.out.println(c);
-		        				}
-                            
-    	                     System.out.println("********************************");
-    	                 }
-    	             }catch(ClassNotFoundException e){
-    	                 System.out.println(e);
-    	             } catch (IOException io){
-    	                 System.out.println(io);
-		        		} finally{ file.close();}
-
+		        try{
+                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Texto"));
+                    Ciudadano c = (Ciudadano)ois.readObject();
+                    while (c!=null){
+                        if (c instanceof Ciudadano && c.getIne().equals(ine))
+                            System.out.println(c);
+                    c = (Ciudadano)ois.readObject();
+                }
+                ois.close();
+            }
+            catch (EOFException e1){
+                System.out.println ("Resultado");
+            }
+            catch (Exception e2){
+                e2.printStackTrace();
+            }
                 break;
                 case 3: 
-                ArrayList<Ciudadano> lista = new ArrayList<Ciudadano>();
-                System.out.print("LISTA DE CIUDADANOS \n");
-                FileInputStream f = new FileInputStream("Texto");
                 try{
-                    while(true){
-                        ObjectInputStream ois = new ObjectInputStream(f);
-                        Ciudadano c;
-                        try {
-                            c = (Ciudadano)ois.readObject();
-                        }catch(EOFException eof){
-                            System.out.println(eof);
-                            break;
-                        }
-                        System.out.println(c.toString());
-                        System.out.println("********************************");
+                    // Se crea un ObjectInputStream
+                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Texto"));
+                    // Se lee el primer objeto
+                    Object c = ois.readObject();
+                    // Mientras haya objetos
+                    while (c!=null)
+                    {
+                        if (c instanceof Ciudadano)
+                            System.out.println(c);
+                        c = ois.readObject();
                     }
-                }catch(ClassNotFoundException e){
-                    System.out.println(e);
-                } catch (IOException io){
-                    System.out.println(io);
-                } finally{ f.close();}
-                
+                    ois.close();
+                }
+                catch (EOFException e1){
+                    System.out.println ("Fin de fichero");
+                }
+                catch (Exception e2){
+                    e2.printStackTrace();
+                }
                 break;
-
         }
-
     }
 }
